@@ -1,0 +1,110 @@
+# UART to CSV
+
+[![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip "Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.")
+
+Python script for reading a line via UART and appending it to a CSV file along with a timestamp
+
+
+## What it does
+
+This script is intended to be used as part of the device production process.
+It collects a device's unique ID, displays it, stores it in a CSV file (along with a timestamp and the operator's name), and prints it.
+
+If the device would be a 1-Wire sensor, the device ID would be the sensor's unique 1-Wire bus address.
+
+### Typical workflow
+1. Get a device's unique ID via UART.
+2. Display device ID.
+3. Save device ID, timestamp, and operator's name to a CSV file.
+4. Print device ID via a label printer.
+
+### Details
+* **Label.** Put on the device so the installer can identify each device based on device ID.
+* **CSV files.** Serve as a production log. They are used to notify the operator if a device ID occurs a second time.
+* **UART.** Acts as a generic interface to any kind of bus in case the sensor does not provide its network address via UART:
+```text
+1-Wire sensor <-> Arduino <-UART-> UART/USB adapter <-> Python script <-> label printer
+```
+
+## Milestones
+* [X] Basic user interaction
+* [X] Write CSV file
+* [ ] Working serial communication
+* [ ] Print the device ID
+* [ ] Handle typical invalid user input
+
+
+## Getting started
+It requires Python v3 or later.
+
+**Linux**
+```bash
+$ sudo apt-get install python3 python3-serial
+$ ./read.py
+```
+
+**Windows**
+* [Download](https://www.python.org/downloads/windows/) the latest Python 3 version.
+* Make sure you can access Python 3 as `python3` on the command line:
+  * Open the File Manager, head to the folder where you installed Python 3  
+  `C:\Users\[username]\AppData\Local\Programs\Python\Python37 by default).`
+  * Copy `python.exe` and rename the copy to `python3.exe`.
+* Install `pyserial`: `pip3 install pyserial`
+
+
+## Typical output
+
+**Command line**
+```text
+./read.py
+[+] Select one of the available serial ports:
+    (1) /dev/ttyUSB1
+    (2) /dev/ttyUSB2
+>>> 3
+[!] Invalid serial port.
+
+[+] Select one of the available serial ports:
+    (1) /dev/ttyUSB1
+    (2) /dev/ttyUSB2
+>>> 2
+
+[+] Operator's name:
+>>> mkm
+
+Press ENTER to read a line from the serial port.
+Press q and ENTER to exit.
+
+2018-11-19 13:15:34 DEADBEEF
+2018-11-19 13:15:42 CAFED00D
+2018-11-19 13:15:50 FEEDFACE
+2018-11-19 13:15:58 C00010FF
+2018-11-19 13:16:06 BADDCAFE
+2018-11-19 13:16:14 D15EA5E0
+2018-11-19 13:16:22 FEE1DEAD
+2018-11-19 13:16:30 FEEEFEEE
+q
+[+] Closed serial port: /dev/ttyUSB2
+[+] Closed CSV file.
+```
+
+**CSV file**
+```CSV
+2018-11-19 13:15:34, DEADBEEF, mkm
+2018-11-19 13:15:42, CAFED00D, mkm
+2018-11-19 13:15:50, FEEDFACE, mkm
+2018-11-19 13:15:58, C00010FF, mkm
+2018-11-19 13:16:06, BADDCAFE, mkm
+2018-11-19 13:16:14, D15EA5E0, mkm
+2018-11-19 13:16:22, FEE1DEAD, mkm
+2018-11-19 13:16:30, FEEEFEEE, mkm
+```
+
+
+## License
+
+**GNU General Public License v3.0**
+
+This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License, version 3, as published by the Free Software Foundation.
+
+See [LICENSE](LICENSE) for details.
+
