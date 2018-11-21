@@ -58,15 +58,16 @@ $ ./read.py
 ```text
 ./read.py
 [+] Select one of the available serial ports:
-    (1) /dev/ttyUSB1
-    (2) /dev/ttyUSB2
+    (1) /dev/ttyUSB0
+    (2) /dev/ttyUSB1
 >>> 3
 [!] Invalid serial port.
 
 [+] Select one of the available serial ports:
-    (1) /dev/ttyUSB1
-    (2) /dev/ttyUSB2
+    (1) /dev/ttyUSB0
+    (2) /dev/ttyUSB1
 >>> 2
+[+] Successfully connected.
 
 [+] Operator's name:
 >>> mkm
@@ -82,13 +83,12 @@ Press q and ENTER to exit.
 2018-11-19 13:16:14 D15EA5E0
 2018-11-19 13:16:22 FEE1DEAD
 2018-11-19 13:16:30 FEEEFEEE
-q
-[+] Closed serial port: /dev/ttyUSB2
+[+] Closed serial port: /dev/ttyUSB1
 [+] Closed CSV file.
 ```
 
 **CSV file**
-```CSV
+```text
 2018-11-19 13:15:34, DEADBEEF, mkm
 2018-11-19 13:15:42, CAFED00D, mkm
 2018-11-19 13:15:50, FEEDFACE, mkm
