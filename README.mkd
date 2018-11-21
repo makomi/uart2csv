@@ -23,7 +23,9 @@ If the device would be a 1-Wire sensor, the device ID would be the sensor's uniq
 * **CSV files.** Serve as a production log. They are used to notify the operator if a device ID occurs a second time.
 * **UART.** Acts as a generic interface to any kind of bus in case the sensor does not provide its network address via UART:
 ```text
-1-Wire sensor <-> Arduino <-> UART/USB adapter <-> Python script <-> label printer
+                                                                 .-> display
+1-Wire sensor <-> Arduino <-> UART/USB adapter <-> Python script --> label printer
+                                                                 `-> CSV file
 ```
 
 ## Milestones
