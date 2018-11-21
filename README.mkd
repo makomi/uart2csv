@@ -83,7 +83,7 @@ Press q and ENTER to exit.
 2018-11-19 13:16:14 D15EA5E0
 2018-11-19 13:16:22 FEE1DEAD
 2018-11-19 13:16:30 FEEEFEEE
-[+] Closed serial port: /dev/ttyUSB1
+[+] Closed /dev/ttyUSB1.
 [+] Closed CSV file.
 ```
 

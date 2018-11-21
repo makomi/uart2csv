@@ -108,7 +108,7 @@ if __name__ == '__main__':
             )
         print("[+] Successfully connected.")
     except serial.SerialException:
-        print("[!] Unable to open '%s'." % selected_port)
+        print("[!] Unable to open %s." % selected_port)
         exit(-1)
 
     # get operator's name
@@ -142,10 +142,10 @@ if __name__ == '__main__':
             # close serial port
             try:
                 uart.close()
-                print("[+] Closed serial port: %s" % selected_port)
+                print("[+] Closed %s." % selected_port)
                 successful_exit = True
             except serial.SerialException:
-                print("[!] Unable to close serial port: %s" % selected_port)
+                print("[!] Unable to close %s." % selected_port)
             # close file
             try:
                 file_csv.close()
