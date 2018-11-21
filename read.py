@@ -88,7 +88,7 @@ if __name__ == '__main__':
             for port,desc,_ in available_ports:
                 print ("    (%d) %s \"%s\"" % (item,port,desc))
                 item=item+1
-            selected_item = int(input(">>> "))         # TODO: Handle character input
+            selected_item = int(raw_input(">>> "))                               # TODO: handle character input
             # check if a valid item was selected
             if (selected_item > 0) and (selected_item <= len(available_ports)):
                 (selected_port,_,_) = available_ports[selected_item-1]
@@ -113,13 +113,13 @@ if __name__ == '__main__':
 
     # get operator's name
     print("\n[+] Operator's name:")
-    operator_name = input(">>> ")
+    operator_name = raw_input(">>> ")
 
     # create the output folder for the CSV files if it does not already exist
     mkdir(folder_output)
 
     # filepointer to CSV file
-    bufsize = -1                # FIXME: make sure the file is continuously flushed
+    bufsize = -1                                                                 # FIXME: make sure the file is continuously flushed
     file_csv = open('%s/%s.csv' % (folder_output,datetime.now().strftime("%Y-%m-%d %H-%M-%S")), 'w+', bufsize)
 
     # read lines from the serial port and append them to the CSV file
@@ -129,7 +129,7 @@ if __name__ == '__main__':
     while True:
 
         # wait for enter
-        user = input("")
+        user = raw_input("")
 
         # avoid empty line between results
         CURSOR_UP_ONE = '\x1b[1A'
