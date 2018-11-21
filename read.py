@@ -72,7 +72,7 @@ if __name__ == '__main__':
     available_ports.sort(key=operator.itemgetter(1))                             # sort the list
 
     # determine serial port
-    # TODO: Check file_cfg for preselected serial port
+    # TODO: check file_cfg for preselected serial port
     if len(available_ports) == 0:       # list is empty -> exit
         print("[!] No serial port found.")
         exit(-1)
@@ -164,10 +164,10 @@ if __name__ == '__main__':
         #line = uart.readline().decode('ascii')
         line = "AABBCCDDEEFF0011\n"                                              # TODO: remove dummy
 
-        # TODO: Extract the device_id
+        # TODO: extract the device_id
         device_id = line[0:16]
 
-        # TODO: Check if the device_id is a duplicate
+        # TODO: check if the device_id is a duplicate
 
         # TODO: create a timestamp
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
