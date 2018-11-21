@@ -160,13 +160,12 @@ if __name__ == '__main__':
                 exit(-1)
 
         # request the device's ID and read the response
-#        uart.write("print_id\n")
-#        line = uart.readline().decode('ascii')
-
-        # TODO: Check if the response conforms to what we expect, i.e. 8 characters and a line feed
+        uart.write("print_id\n")
+        #line = uart.readline().decode('ascii')
+        line = "AABBCCDDEEFF0011\n"                                              # TODO: remove dummy
 
         # TODO: Extract the device_id
-        device_id = "DEADBEEF" # dummy
+        device_id = line[0:16]
 
         # TODO: Check if the device_id is a duplicate
 
