@@ -43,13 +43,12 @@ $ sudo apt-get install python2.7 python-serial
 $ ./read.py
 ```
 
-**Windows**
-* [Download](https://www.python.org/downloads/windows/) the latest Python 3 version.
-* Make sure you can access Python 3 as `python3` on the command line:
-  * Open the File Manager, head to the folder where you installed Python 3  
-  `C:\Users\[username]\AppData\Local\Programs\Python\Python37 by default).`
-  * Copy `python.exe` and rename the copy to `python3.exe`.
-* Install `pyserial`: `pip3 install pyserial`
+**Windows**  
+[Download](https://www.python.org/downloads/windows/) the latest Python 2 version.
+```text
+> pip install pyserial
+> read.py
+```
 
 
 ## Typical output
