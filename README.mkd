@@ -35,7 +35,7 @@ If the device would be a 1-Wire sensor, the device ID would be the sensor's uniq
 
 
 ## Getting started
-It requires Python v3 or later.
+It requires Python v2.7 or later.
 
 **Linux**
 ```bash
