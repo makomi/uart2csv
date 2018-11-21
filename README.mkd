@@ -30,7 +30,7 @@ If the device would be a 1-Wire sensor, the device ID would be the sensor's uniq
 * [X] Basic user interaction
 * [X] Write CSV file
 * [X] Working serial communication
-* [ ] Print the device ID
+* [ ] Print the device ID on a label printer
 * [ ] Handle typical invalid user input
 
 
