@@ -28,8 +28,6 @@ UPDATES    : https://github.com/makomi/uart2csv
 # -----------------------------------------------------------------------------
 
 import os
-import io
-import sys
 import operator
 import serial
 import serial.tools.list_ports
