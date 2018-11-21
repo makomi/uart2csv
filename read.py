@@ -66,9 +66,10 @@ def mkdir(folder_name):
 
 if __name__ == '__main__':
 
-    # get available serial ports and sort the list
-    available_ports = list(serial.tools.list_ports.comports())
-    available_ports.sort(key=operator.itemgetter(1))
+    # get serial ports
+    available_ports_all = list(serial.tools.list_ports.comports())               # get all available serial ports
+    available_ports = [port for port in available_ports_all if port[2] != 'n/a'] # remove all unfit serial ports
+    available_ports.sort(key=operator.itemgetter(1))                             # sort the list
 
     # determine serial port
     # TODO: Check file_cfg for preselected serial port
@@ -76,7 +77,7 @@ if __name__ == '__main__':
         print("[!] No serial port found.")
         exit(-1)
     elif len(available_ports) == 1:     # only one port available
-        (selected_port,_,_,_) = available_ports[0]
+        (selected_port,_,_) = available_ports[0]
         print("[+] Using only available serial port: %s" % selected_port)
     else:                               # let user choose a port
         successful_selection = False
@@ -105,9 +106,9 @@ if __name__ == '__main__':
             stopbits = serial.STOPBITS_ONE,
             bytesize = serial.EIGHTBITS
             )
-        print("[+] Successfully connected to serial port: %s" % selected_port)
+        print("[+] Successfully connected.")
     except serial.SerialException:
-        print("[!] Unable to open serial port: %s" % selected_port)
+        print("[!] Unable to open '%s'." % selected_port)
         exit(-1)
 
     # get operator's name
