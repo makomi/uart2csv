@@ -164,7 +164,8 @@ if __name__ == '__main__':
         #line = uart.readline().decode('ascii')
         line = "AABBCCDDEEFF0011\n"                                              # TODO: remove dummy
 
-        # TODO: extract the device_id
+        # extract the device_id
+        # expected: "<16 character device ID>\n"
         device_id = line[0:16]
 
         # TODO: check if the device_id is a duplicate
