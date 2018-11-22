@@ -161,13 +161,12 @@ if __name__ == '__main__':
         uart.write("print_id\n")
         line = uart.readline().decode('ascii')
 
-        # display dummy address for demo purposes
-        if len(line) == 0:
-            line = "---DUMMY-ADDR---"
-
-        # extract the device_id
-        # expected: "<16 character device ID>\n"
+        # extract the device_id (expected: "<16 character device ID>\n")
         device_id = line[0:16]
+
+        # display dummy address for demo purposes
+        if len(device_id) == 0:
+            device_id = "--READ-TIMEOUT--"
 
         # TODO: check if the device_id is a duplicate
 
