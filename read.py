@@ -124,6 +124,10 @@ def set_operator_initials():
     if len(operator_initials) == 0:
         operator_initials = "n/a"
 
+def print_usage_guide():
+    print("\nPress ENTER to read a line from the serial port.")
+    print("Press 'q' and ENTER to exit.")
+
 def check_for_exit_condition():
     """exit program after releasing all resources"""
     global uart
@@ -168,9 +172,7 @@ if __name__ == '__main__':
     bufsize = -1                                                                 # FIXME: make sure the file is continuously flushed
     file_csv = open('%s/%s.csv' % (folder_output,datetime.now().strftime("%Y-%m-%d %H-%M-%S")), 'w+', bufsize)
 
-    # read lines from the serial port and append them to the CSV file
-    print("\nPress ENTER to read a line from the serial port.")
-    print("Press 'q' and ENTER to exit.\n")
+    print_usage_guide()
 
     while True:
 
