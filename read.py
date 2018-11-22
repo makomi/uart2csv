@@ -154,6 +154,20 @@ def check_for_exit_condition():
         else:
             exit(-1)
 
+def get_device_id():
+    global uart
+    global device_id
+    # request the device's ID and read the response
+    uart.write(serial_cmd)
+    line = uart.readline().decode('ascii')
+
+    # extract the device_id (expected: "<16 character device ID>\n")
+    device_id = line[0:16]
+
+    # display dummy address for demo purposes
+    if len(device_id) == 0:
+        device_id = serial_timeout_msg
+
 # -----------------------------------------------------------------------------
 # main program
 # -----------------------------------------------------------------------------
@@ -186,16 +200,7 @@ if __name__ == '__main__':
 
         check_for_exit_condition()
 
-        # request the device's ID and read the response
-        uart.write(serial_cmd)
-        line = uart.readline().decode('ascii')
-
-        # extract the device_id (expected: "<16 character device ID>\n")
-        device_id = line[0:16]
-
-        # display dummy address for demo purposes
-        if len(device_id) == 0:
-            device_id = serial_timeout_msg
+        get_device_id()
 
         # TODO: check if the device_id is a duplicate
 
