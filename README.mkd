@@ -56,56 +56,75 @@ $ ./read.py
 ## Typical output
 
 **Command line**
-```text
-./read.py
-[+] Select one of the available serial ports:
-    (1) /dev/ttyUSB0
-    (2) /dev/ttyUSB1
->>> 3
-[!] Invalid serial port.
 
-[+] Select one of the available serial ports:
-    (1) /dev/ttyUSB0
-    (2) /dev/ttyUSB1
->>> 2
+```text
+$ ./read.py
+[!] No serial port found.
+```
+
+```text
+$ ./read.py
+[+] Using only available serial port: /dev/ttyUSB0
 [+] Successfully connected.
 
-[+] Operator's name:
+[+] Operator's initials:
 >>> mkm
 
 Press ENTER to read a line from the serial port.
-Press q and ENTER to exit.
+Press 'q' and ENTER to exit.
 
-2018-11-19 13:15:34  DEADBEEF
+2018-11-19 13:15:34  DEADBEEFCAFED00D
 
-2018-11-19 13:15:42  CAFED00D
+2018-11-19 13:15:42  FEEDFACEC00010FF
 
-2018-11-19 13:15:50  FEEDFACE
+2018-11-19 13:15:50  BADDCAFED15EA5E0
 
-2018-11-19 13:15:58  C00010FF
-
-2018-11-19 13:16:06  BADDCAFE
-
-2018-11-19 13:16:14  D15EA5E0
-
-2018-11-19 13:16:22  FEE1DEAD
-
-2018-11-19 13:16:30  FEEEFEEE
+2018-11-19 13:15:58  FEE1DEADFEEEFEEE
 q
 [+] Closed /dev/ttyUSB1.
 [+] Closed CSV file.
 ```
 
-**CSV file**
 ```text
-2018-11-19 13:15:34, DEADBEEF, mkm
-2018-11-19 13:15:42, CAFED00D, mkm
-2018-11-19 13:15:50, FEEDFACE, mkm
-2018-11-19 13:15:58, C00010FF, mkm
-2018-11-19 13:16:06, BADDCAFE, mkm
-2018-11-19 13:16:14, D15EA5E0, mkm
-2018-11-19 13:16:22, FEE1DEAD, mkm
-2018-11-19 13:16:30, FEEEFEEE, mkm
+C:\Users\mkm>read.py
+[+] Select one of the available serial ports:
+    (1) COM15 "Silicon Labs CP210x USB to UART Bridge (COM15)"
+    (2) COM4 "Silicon Labs CP210x USB to UART Bridge (COM4)"
+>>> 3
+[!] Invalid serial port.
+
+[+] Select one of the available serial ports:
+    (1) COM15 "Silicon Labs CP210x USB to UART Bridge (COM15)"
+    (2) COM4 "Silicon Labs CP210x USB to UART Bridge (COM4)"
+>>> 2
+[+] Successfully connected.
+
+[+] Operator's initials:
+>>> mkm
+
+Press ENTER to read a line from the serial port.
+Press q and ENTER to exit.
+
+2018-11-22 12:47:50  DEADBEEFCAFED00D
+
+2018-11-22 12:47:51  FEEDFACEC00010FF
+
+2018-11-22 12:47:53  BADDCAFED15EA5E0
+
+2018-11-22 12:47:54  FEE1DEADFEEEFEEE
+q
+[+] Closed COM4.
+[+] Closed CSV file.
+```
+
+
+**CSV file**
+
+```text
+2018-11-19 13:15:34, DEADBEEFCAFED00D, mkm
+2018-11-19 13:15:50, FEEDFACEC00010FF, mkm
+2018-11-19 13:16:06, BADDCAFED15EA5E0, mkm
+2018-11-19 13:16:22, FEE1DEADFEEEFEEE, mkm
 ```
 
 
