@@ -173,6 +173,21 @@ def get_device_id():
     if len(device_id) == 0:
         device_id = serial_timeout_msg
 
+def output_data():
+    global file_csv
+    # create a timestamp
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    # display the result
+    print("%s  %s" % (timestamp, device_id))
+
+    # append the result to the CSV
+    if device_id != serial_timeout_msg:
+        file_csv.write("%s, %s, %s\n" % (timestamp, device_id, operator_initials))
+
+    # TODO: print the device_id on paper
+    # Zebra S4M, v53.17.11Z
+
 # -----------------------------------------------------------------------------
 # main program
 # -----------------------------------------------------------------------------
@@ -204,15 +219,4 @@ if __name__ == '__main__':
 
         # TODO: check if the device_id is a duplicate
 
-        # create a timestamp
-        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
-        # display the result
-        print("%s  %s" % (timestamp,device_id))
-
-        # append the result to the CSV
-        if device_id != serial_timeout_msg:
-            file_csv.write("%s, %s, %s\n" % (timestamp,device_id,operator_initials))
-
-        # TODO: print the device_id on paper
-        # Zebra S4M, v53.17.11Z
+        output_data()
