@@ -164,7 +164,7 @@ if __name__ == '__main__':
     # create the output folder for the CSV files if it does not already exist
     mkdir(folder_output)
 
-    # filepointer to CSV file
+    # file object for CSV file
     bufsize = -1                                                                 # FIXME: make sure the file is continuously flushed
     file_csv = open('%s/%s.csv' % (folder_output,datetime.now().strftime("%Y-%m-%d %H-%M-%S")), 'w+', bufsize)
 
