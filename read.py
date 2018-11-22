@@ -204,7 +204,7 @@ if __name__ == '__main__':
 
         # TODO: check if the device_id is a duplicate
 
-        # TODO: create a timestamp
+        # create a timestamp
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
         # display the result
