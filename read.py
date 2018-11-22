@@ -173,6 +173,9 @@ def get_device_id():
     if len(device_id) == 0:
         device_id = serial_timeout_msg
 
+def handle_device_id_duplicates():
+    pass                                                                         # TODO: check if the device_id is a duplicate
+
 def output_data():
     global file_csv
     # create a timestamp
@@ -217,6 +220,6 @@ if __name__ == '__main__':
 
         get_device_id()
 
-        # TODO: check if the device_id is a duplicate
+        handle_device_id_duplicates()
 
         output_data()
