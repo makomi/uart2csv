@@ -29,6 +29,13 @@ If the device would be a 1-Wire sensor, the device ID would be the sensor's uniq
 ```
 
 
+## Interaction with Arduino
+* Default serial port configuration: 115200 8N1 (`serial_baud_rate`)
+* Default read timeout: 2 seconds (`serial_timeout_read`)
+* Default command to query Arduino for device: `print_id` (`serial_cmd`)
+* This script expects the first 16 characters of the Arduino's response to be the device ID. Everything that follows the first 16 characters is ignored.
+
+
 ## Milestones
 * [X] Basic user interaction
 * [X] Write CSV file
