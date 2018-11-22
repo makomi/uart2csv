@@ -128,7 +128,7 @@ def check_for_exit_condition():
     """exit program after releasing all resources"""
     global uart
     global file_csv
-    if user == "q":
+    if user_input == "q":
         successful_exit = False
         # close serial port
         try:
@@ -175,7 +175,7 @@ if __name__ == '__main__':
     while True:
 
         # wait for enter
-        user = raw_input("")
+        user_input = raw_input("")
 
         # avoid empty line between results                                       # FIXME: this only works on Linux terminals
         #CURSOR_UP_ONE = '\x1b[1A'
