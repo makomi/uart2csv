@@ -94,16 +94,16 @@ if __name__ == '__main__':
             else:
                 print("[!] Invalid serial port.\n")
 
-    # open serial port
+    # open serial port: 115200 8N1
     try:
         uart = serial.Serial(
             selected_port,
             115200,
-            timeout  = 1,
+            timeout  = 2,      # number of seconds after which we consider the serial read operation to have failed
+            bytesize = serial.EIGHTBITS,
             parity   = serial.PARITY_NONE,
             stopbits = serial.STOPBITS_ONE,
-            bytesize = serial.EIGHTBITS
-            )
+        )
         print("[+] Successfully connected.")
     except serial.SerialException:
         print("[!] Unable to open %s." % selected_port)
