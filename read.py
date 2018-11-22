@@ -42,6 +42,7 @@ folder_output = "csv"
 
 serial_baud_rate    = 115200
 serial_timeout_read = 2            # number of seconds after which we consider the serial read operation to have failed
+serial_timeout_msg  = "--READ-TIMEOUT--"
 serial_cmd          = "print_id"   # command sent to request the device ID
 
 # -----------------------------------------------------------------------------
@@ -178,7 +179,7 @@ if __name__ == '__main__':
 
         # display dummy address for demo purposes
         if len(device_id) == 0:
-            device_id = "--READ-TIMEOUT--"
+            device_id = serial_timeout_msg
 
         # TODO: check if the device_id is a duplicate
 
@@ -188,8 +189,9 @@ if __name__ == '__main__':
         # display the result
         print("%s  %s" % (timestamp,device_id))
 
-        # append the result to the CSV file
-        file_csv.write("%s, %s, %s\n" % (timestamp,device_id,operator_name))
+        # append the result to the CSV
+        if device_id != serial_timeout_msg:
+            file_csv.write("%s, %s, %s\n" % (timestamp,device_id,operator_name))
 
         # TODO: print the device_id on paper
         # Zebra S4M, v53.17.11Z
