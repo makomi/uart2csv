@@ -37,6 +37,14 @@ folder_output = "csv"
 #file_cfg      = "settings.cfg"
 
 # -----------------------------------------------------------------------------
+# settings (change this as required)
+# -----------------------------------------------------------------------------
+
+serial_baud_rate    = 115200
+serial_timeout_read = 2            # number of seconds after which we consider the serial read operation to have failed
+serial_cmd          = "print_id"   # command sent to request the device ID
+
+# -----------------------------------------------------------------------------
 # global variables
 # -----------------------------------------------------------------------------
 
@@ -98,8 +106,8 @@ if __name__ == '__main__':
     try:
         uart = serial.Serial(
             selected_port,
-            115200,
-            timeout  = 2,      # number of seconds after which we consider the serial read operation to have failed
+            serial_baud_rate,
+            timeout  = serial_timeout_read,
             bytesize = serial.EIGHTBITS,
             parity   = serial.PARITY_NONE,
             stopbits = serial.STOPBITS_ONE,
@@ -162,7 +170,7 @@ if __name__ == '__main__':
                 exit(-1)
 
         # request the device's ID and read the response
-        uart.write("print_id\n")
+        uart.write(serial_cmd)
         line = uart.readline().decode('ascii')
 
         # extract the device_id (expected: "<16 character device ID>\n")
