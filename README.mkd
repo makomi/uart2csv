@@ -65,11 +65,13 @@ $ ./read.py
 
 **Command line**
 
+No serial port:
 ```text
 $ ./read.py
 [!] No suitable serial port found.
 ```
 
+One serial port:
 ```text
 $ ./read.py
 [+] Using only available serial port: /dev/ttyUSB0
@@ -93,6 +95,7 @@ q
 [+] Closed CSV file.
 ```
 
+Two serial ports:
 ```text
 C:\Users\mkm>read.py
 [+] Select one of the available serial ports:
