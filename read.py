@@ -124,6 +124,11 @@ def set_operator_initials():
     if len(operator_initials) == 0:
         operator_initials = "n/a"
 
+def create_csv_file():
+    global file_csv              # file object for CSV file
+    mkdir(folder_output)         # create the output folder for the CSV files if it does not already exist
+    file_csv = open('%s/%s.csv' % (folder_output,datetime.now().strftime("%Y-%m-%d %H-%M-%S")), 'w+', -1)  # FIXME: make sure the file is continuously flushed
+
 def print_usage_guide():
     print("\nPress ENTER to read a line from the serial port.")
     print("Press 'q' and ENTER to exit.")
@@ -179,12 +184,7 @@ if __name__ == '__main__':
 
     set_operator_initials()
 
-    # create the output folder for the CSV files if it does not already exist
-    mkdir(folder_output)
-
-    # file object for CSV file
-    bufsize = -1                                                                 # FIXME: make sure the file is continuously flushed
-    file_csv = open('%s/%s.csv' % (folder_output,datetime.now().strftime("%Y-%m-%d %H-%M-%S")), 'w+', bufsize)
+    create_csv_file()
 
     print_usage_guide()
 

@@ -77,13 +77,21 @@ Press ENTER to read a line from the serial port.
 Press q and ENTER to exit.
 
 2018-11-19 13:15:34  DEADBEEF
+
 2018-11-19 13:15:42  CAFED00D
+
 2018-11-19 13:15:50  FEEDFACE
+
 2018-11-19 13:15:58  C00010FF
+
 2018-11-19 13:16:06  BADDCAFE
+
 2018-11-19 13:16:14  D15EA5E0
+
 2018-11-19 13:16:22  FEE1DEAD
+
 2018-11-19 13:16:30  FEEEFEEE
+q
 [+] Closed /dev/ttyUSB1.
 [+] Closed CSV file.
 ```
