@@ -49,10 +49,10 @@ serial_cmd          = "print_id"   # command sent to request the device ID
 # global variables
 # -----------------------------------------------------------------------------
 
-global selected_port
-global uart
-global file_csv
-global operator_initials
+global selected_port       # serial port that will be used
+global operator_initials   # used to identify the operator in the CSV file log
+global uart                # serial port object
+global file_csv            # file object for the CSV file
 
 # -----------------------------------------------------------------------------
 # helper functions
