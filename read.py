@@ -129,10 +129,10 @@ if __name__ == '__main__':
         # wait for enter
         user = raw_input("")
 
-        # avoid empty line between results
-        CURSOR_UP_ONE = '\x1b[1A'
-        ERASE_LINE    = '\x1b[2K'
-        print(CURSOR_UP_ONE + ERASE_LINE + CURSOR_UP_ONE)
+        # avoid empty line between results                                       # FIXME: this only works on Linux terminals
+        #CURSOR_UP_ONE = '\x1b[1A'
+        #ERASE_LINE    = '\x1b[2K'
+        #print(CURSOR_UP_ONE + ERASE_LINE + CURSOR_UP_ONE)
 
         # exit program after releasing all resources
         if user == "q":
