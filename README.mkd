@@ -48,7 +48,7 @@ $ ./read.py
 **Windows**  
 [Download](https://www.python.org/downloads/windows/) the latest Python 2 version.
 ```text
-> pip install pyserial
+> pip install -r requirements.txt
 > read.py
 ```
 
