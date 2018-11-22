@@ -28,6 +28,7 @@ If the device would be a 1-Wire sensor, the device ID would be the sensor's uniq
                                                                  `-> CSV file
 ```
 
+
 ## Milestones
 * [X] Basic user interaction
 * [X] Write CSV file
