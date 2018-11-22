@@ -67,7 +67,7 @@ $ ./read.py
 
 ```text
 $ ./read.py
-[!] No serial port found.
+[!] No suitable serial port found.
 ```
 
 ```text

@@ -76,7 +76,7 @@ def get_available_serial_ports():
 def select_a_serial_port(available_ports):                                       # TODO: check file_cfg for preselected serial port
     global selected_port
     if len(available_ports) == 0:       # list is empty -> exit
-        print("[!] No serial port found.")
+        print("[!] No suitable serial port found.")
         exit(-1)
     elif len(available_ports) == 1:     # only one port available
         (selected_port,_,_) = available_ports[0]
