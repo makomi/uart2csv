@@ -11,7 +11,7 @@ The goal is to read a device's unique ID via UART, display it, log it in a CSV f
 
 If the device is a 1-Wire sensor, the device ID would be the sensor's unique 1-Wire bus address.
 
-Test to work with Windows and Linux.
+Tested to work on Windows and Linux.
 
 ### Typical workflow
 1. Get a device's unique ID via UART.
