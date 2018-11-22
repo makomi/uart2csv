@@ -159,8 +159,11 @@ if __name__ == '__main__':
 
         # request the device's ID and read the response
         uart.write("print_id\n")
-        #line = uart.readline().decode('ascii')
-        line = "AABBCCDDEEFF0011\n"                                              # TODO: remove dummy
+        line = uart.readline().decode('ascii')
+
+        # display dummy address for demo purposes
+        if len(line) == 0:
+            line = "---DUMMY-ADDR---"
 
         # extract the device_id
         # expected: "<16 character device ID>\n"
