@@ -154,5 +154,5 @@ See [LICENSE](LICENSE) for details.
 
 ## Comparable projects
 
-**Please add them**
+**Please add them.**
 
