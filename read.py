@@ -78,8 +78,7 @@ if __name__ == '__main__':
     available_ports = [port for port in available_ports_all if port[2] != 'n/a'] # remove all unfit serial ports
     available_ports.sort(key=operator.itemgetter(1))                             # sort the list based on the port
 
-    # determine serial port
-    # TODO: check file_cfg for preselected serial port
+    # determine serial port                                                      # TODO: check file_cfg for preselected serial port
     if len(available_ports) == 0:       # list is empty -> exit
         print("[!] No serial port found.")
         exit(-1)
