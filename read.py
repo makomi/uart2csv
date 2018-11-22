@@ -52,7 +52,7 @@ serial_cmd          = "print_id"   # command sent to request the device ID
 global selected_port
 global uart
 global file_csv
-global operator_name
+global operator_initials
 
 # -----------------------------------------------------------------------------
 # helper functions
@@ -67,18 +67,14 @@ def mkdir(folder_name):
             if not os.path.isdir(folder_name):
                 raise
 
-# -----------------------------------------------------------------------------
-# main program
-# -----------------------------------------------------------------------------
-
-if __name__ == '__main__':
-
-    # get serial ports
+def get_available_serial_ports():
     available_ports_all = list(serial.tools.list_ports.comports())               # get all available serial ports
     available_ports = [port for port in available_ports_all if port[2] != 'n/a'] # remove all unfit serial ports
     available_ports.sort(key=operator.itemgetter(1))                             # sort the list based on the port
+    return available_ports
 
-    # determine serial port                                                      # TODO: check file_cfg for preselected serial port
+def select_a_serial_port(available_ports):                                       # TODO: check file_cfg for preselected serial port
+    global selected_port
     if len(available_ports) == 0:       # list is empty -> exit
         print("[!] No serial port found.")
         exit(-1)
@@ -102,7 +98,8 @@ if __name__ == '__main__':
             else:
                 print("[!] Invalid serial port.\n")
 
-    # open serial port: 115200 8N1
+def open_selected_serial_port():
+    global uart
     try:
         uart = serial.Serial(
             selected_port,
@@ -117,13 +114,52 @@ if __name__ == '__main__':
         print("[!] Unable to open %s." % selected_port)
         exit(-1)
 
+def set_operator_initials():
+    global operator_initials
     # get operator's initials
     print("\n[+] Operator's initials:")
-    operator_name = raw_input(">>> ")
+    operator_initials = raw_input(">>> ")
 
     # make it obvious that the operator did not provide initials
-    if len(operator_name) == 0:
-        operator_name = "n/a"
+    if len(operator_initials) == 0:
+        operator_initials = "n/a"
+
+def check_for_exit_condition():
+    """exit program after releasing all resources"""
+    global uart
+    global file_csv
+    if user == "q":
+        successful_exit = False
+        # close serial port
+        try:
+            uart.close()
+            print("[+] Closed %s." % selected_port)
+            successful_exit = True
+        except serial.SerialException:
+            print("[!] Unable to close %s." % selected_port)
+        # close file
+        try:
+            file_csv.close()
+            print("[+] Closed CSV file.")
+            successful_exit = True
+        except:
+            print("[!] Unable to close CSV file.")
+        # exit
+        if successful_exit:
+            exit(0)
+        else:
+            exit(-1)
+
+# -----------------------------------------------------------------------------
+# main program
+# -----------------------------------------------------------------------------
+
+if __name__ == '__main__':
+
+    select_a_serial_port(get_available_serial_ports())
+    open_selected_serial_port()
+
+    set_operator_initials()
 
     # create the output folder for the CSV files if it does not already exist
     mkdir(folder_output)
@@ -146,28 +182,7 @@ if __name__ == '__main__':
         #ERASE_LINE    = '\x1b[2K'
         #print(CURSOR_UP_ONE + ERASE_LINE + CURSOR_UP_ONE)
 
-        # exit program after releasing all resources
-        if user == "q":
-            successful_exit = False
-            # close serial port
-            try:
-                uart.close()
-                print("[+] Closed %s." % selected_port)
-                successful_exit = True
-            except serial.SerialException:
-                print("[!] Unable to close %s." % selected_port)
-            # close file
-            try:
-                file_csv.close()
-                print("[+] Closed CSV file.")
-                successful_exit = True
-            except:
-                print("[!] Unable to close CSV file.")
-            # exit
-            if successful_exit:
-                exit(0)
-            else:
-                exit(-1)
+        check_for_exit_condition()
 
         # request the device's ID and read the response
         uart.write(serial_cmd)
@@ -190,7 +205,7 @@ if __name__ == '__main__':
 
         # append the result to the CSV
         if device_id != serial_timeout_msg:
-            file_csv.write("%s, %s, %s\n" % (timestamp,device_id,operator_name))
+            file_csv.write("%s, %s, %s\n" % (timestamp,device_id,operator_initials))
 
         # TODO: print the device_id on paper
         # Zebra S4M, v53.17.11Z
