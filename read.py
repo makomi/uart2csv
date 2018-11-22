@@ -109,9 +109,13 @@ if __name__ == '__main__':
         print("[!] Unable to open %s." % selected_port)
         exit(-1)
 
-    # get operator's name
-    print("\n[+] Operator's name:")
+    # get operator's initials
+    print("\n[+] Operator's initials:")
     operator_name = raw_input(">>> ")
+
+    # make it obvious that the operator did not provide initials
+    if len(operator_name) == 0:
+        operator_name = "n/a"
 
     # create the output folder for the CSV files if it does not already exist
     mkdir(folder_output)
