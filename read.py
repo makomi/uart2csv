@@ -169,7 +169,7 @@ def get_device_id():
     # extract the device_id (expected: "<16 character device ID>\n")
     device_id = line[0:16]
 
-    # display dummy address for demo purposes
+    # display read timeout message to notify the operator
     if len(device_id) == 0:
         device_id = serial_timeout_msg
 
