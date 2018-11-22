@@ -174,7 +174,7 @@ if __name__ == '__main__':
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
         # display the result
-        print("%s %s" % (timestamp,device_id))
+        print("%s  %s" % (timestamp,device_id))
 
         # append the result to the CSV file
         file_csv.write("%s, %s, %s\n" % (timestamp,device_id,operator_name))
