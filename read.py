@@ -67,7 +67,7 @@ if __name__ == '__main__':
     # get serial ports
     available_ports_all = list(serial.tools.list_ports.comports())               # get all available serial ports
     available_ports = [port for port in available_ports_all if port[2] != 'n/a'] # remove all unfit serial ports
-    available_ports.sort(key=operator.itemgetter(1))                             # sort the list
+    available_ports.sort(key=operator.itemgetter(1))                             # sort the list based on the port
 
     # determine serial port
     # TODO: check file_cfg for preselected serial port
