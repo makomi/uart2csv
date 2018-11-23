@@ -40,10 +40,12 @@ folder_output = "csv"
 # settings (change this as required)
 # -----------------------------------------------------------------------------
 
-serial_baud_rate    = 115200
-serial_timeout_read = 2            # number of seconds after which we consider the serial read operation to have failed
-serial_timeout_msg  = "--READ-TIMEOUT--"
-serial_cmd          = "\n"         # characters sent to request the device ID
+serial_baud_rate     = 115200
+serial_timeout_read  = 2           # number of seconds after which we consider the serial read operation to have failed
+serial_timeout_msg   = "--READ-TIMEOUT--"
+serial_too_short_msg = "--ADDR-TOO-SHORT: "
+serial_cmd           = "\n"        # characters sent to request the device ID
+length_device_id     = 16
 
 # -----------------------------------------------------------------------------
 # global variables
@@ -53,6 +55,7 @@ global selected_port       # serial port that will be used
 global operator_initials   # used to identify the operator in the CSV file log
 global uart                # serial port object
 global file_csv            # file object for the CSV file
+global serial_read_ok      # 'True' if we read what we expected
 
 # -----------------------------------------------------------------------------
 # helper functions
@@ -162,16 +165,31 @@ def check_for_exit_condition():
 def get_device_id():
     global uart
     global device_id
+    global serial_read_ok
     # request the device's ID and read the response
     uart.write(serial_cmd)
     line = uart.readline().decode('ascii')
 
     # extract the device_id (expected: "<16 character device ID>\n")
-    device_id = line[0:16]
+    device_id = line[0:length_device_id]
+
+    # make typical whitespace characters visible
+    if device_id == '\n':
+        device_id = "<LF>"
+    elif device_id == '\r':
+        device_id = "<CR>"
+    elif device_id == "\n\r":
+        device_id = "<LF><CR>"
+    elif device_id == "\r\n":
+        device_id = "<CR><LF>"
 
     # display read timeout message to notify the operator
     if len(device_id) == 0:
         device_id = serial_timeout_msg
+    elif len(device_id) < length_device_id:
+        device_id = serial_too_short_msg + "'" + device_id + "'"
+    else:
+        serial_read_ok = True
 
 def handle_device_id_duplicates():
     pass                                                                         # TODO: check if the device_id is a duplicate
@@ -185,7 +203,7 @@ def output_data():
     print("%s  %s" % (timestamp, device_id))
 
     # append the result to the CSV
-    if device_id != serial_timeout_msg:
+    if serial_read_ok:
         file_csv.write("%s, %s, %s\n" % (timestamp, device_id, operator_initials))
 
     # TODO: print the device_id on paper
@@ -207,6 +225,8 @@ if __name__ == '__main__':
     print_usage_guide()
 
     while True:
+
+        serial_read_ok = False
 
         # wait for enter
         user_input = raw_input("")
