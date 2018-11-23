@@ -7,7 +7,7 @@ Python script for reading a line via UART and appending it to a CSV file along w
 
 ## What it does
 
-This script reads a device's unique ID via UART aka serial port, display it, log it in a CSV file (along with a timestamp and the operator's initials), and print it via a label printer. This is a typical step of a device's production process. The device's unique ID is stuck on the device to help an installation technician know which device is which.
+This script reads a device's unique ID via UART aka serial port, displays it, logs it in a CSV file (along with a timestamp and the operator's initials), and prints it via a label printer. This is a typical step of a device's production process. The device's unique ID is stuck on the device to help an installation technician know which device is which.
 
 If the device is a 1-Wire sensor, the device ID would be the sensor's unique 1-Wire bus address.
 
