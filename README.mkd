@@ -143,6 +143,19 @@ q
 ```
 
 
+## Error handling
+
+Nothing read from serial port after `x` number of seconds (`serial_timeout_read`):
+```text
+2018-11-23 19:35:18  --READ-TIMEOUT--
+```
+
+The read string is shorter than expected (`length_device_id`):
+```text
+2018-11-23 20:01:20  --ADDR-TOO-SHORT: 'DEADBEEFCAFE'
+```
+
+
 ## License
 
 **GNU General Public License v3.0**
