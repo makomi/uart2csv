@@ -7,7 +7,7 @@ Python script for reading a line via UART and appending it to a CSV file along w
 
 ## What it does
 
-The goal is to read a device's unique ID via UART, display it, log it in a CSV file (along with a timestamp and the operator's name), and print it via a label printer. This is a typical step of a device's production process. The unique ID is stuck on the device to help an installation technician know which device is which.
+This script reads a device's unique ID via UART aka serial port, display it, log it in a CSV file (along with a timestamp and the operator's initials), and print it via a label printer. This is a typical step of a device's production process. The device's unique ID is stuck on the device to help an installation technician know which device is which.
 
 If the device is a 1-Wire sensor, the device ID would be the sensor's unique 1-Wire bus address.
 
@@ -15,13 +15,13 @@ Tested to work on Windows and Linux.
 
 ### Typical workflow
 1. Get a device's unique ID via UART.
-2. Display device ID for the operator.
-3. Save device ID, timestamp, and operator's name to a CSV file.
+2. Display device ID to the operator.
+3. Save device ID, timestamp, and operator's initials to a CSV file.
 4. Print device ID via a label printer.
 
 ### Details
-* **Label.** Put on the device so the installer can identify each device based on device ID.
-* **CSV files.** Serve as a production log. They are used to notify the operator if a device ID occurs a second time.
+* **Label.** Put on the device so the installation technician can identify each device based on device ID.
+* **CSV files.** Serve as a production log. They are used to notify the operator if a device ID occurs more than once.
 * **UART.** Acts as a generic interface to any kind of bus in case the sensor does not provide its network address via UART:
 ```text
                                                                  .-> display
@@ -34,7 +34,7 @@ Tested to work on Windows and Linux.
 
 * Default serial port configuration: 115200 8N1 (`serial_baud_rate`)
 * Default read timeout: 2 seconds (`serial_timeout_read`)
-* Default command to query Arduino for device: `print_id` (`serial_cmd`)
+* Default for querying Arduino for device ID: `\n` (`serial_cmd`). This allows one to easily get the device ID from the sensor without having to type a command each time.
 * This script expects the first 16 characters of the Arduino's response to be the device ID. Everything that follows the first 16 characters is ignored.
 
 
@@ -49,7 +49,7 @@ Tested to work on Windows and Linux.
 
 ## Getting started
 
-It requires Python v2.7 or later.
+Python v2.7 or later is required.
 
 **Linux**
 ```bash
@@ -75,7 +75,7 @@ $ ./read.py
 [!] No suitable serial port found.
 ```
 
-One serial port:
+One serial port (on Linux):
 ```text
 $ ./read.py
 [+] Using only available serial port: /dev/ttyUSB0
@@ -99,7 +99,7 @@ q
 [+] Closed CSV file.
 ```
 
-Two serial ports:
+Two serial ports (on Windows):
 ```text
 C:\Users\mkm>read.py
 [+] Select one of the available serial ports:
@@ -120,13 +120,13 @@ C:\Users\mkm>read.py
 Press ENTER to read a line from the serial port.
 Press q and ENTER to exit.
 
-2018-11-22 12:47:50  DEADBEEFCAFED00D
+2018-11-19 13:15:34  DEADBEEFCAFED00D
 
-2018-11-22 12:47:51  FEEDFACEC00010FF
+2018-11-19 13:15:42  FEEDFACEC00010FF
 
-2018-11-22 12:47:53  BADDCAFED15EA5E0
+2018-11-19 13:15:50  BADDCAFED15EA5E0
 
-2018-11-22 12:47:54  FEE1DEADFEEEFEEE
+2018-11-19 13:15:58  FEE1DEADFEEEFEEE
 q
 [+] Closed COM4.
 [+] Closed CSV file.
@@ -137,9 +137,9 @@ q
 
 ```text
 2018-11-19 13:15:34, DEADBEEFCAFED00D, mkm
-2018-11-19 13:15:50, FEEDFACEC00010FF, mkm
-2018-11-19 13:16:06, BADDCAFED15EA5E0, mkm
-2018-11-19 13:16:22, FEE1DEADFEEEFEEE, mkm
+2018-11-19 13:15:42, FEEDFACEC00010FF, mkm
+2018-11-19 13:15:50, BADDCAFED15EA5E0, mkm
+2018-11-19 13:15:58, FEE1DEADFEEEFEEE, mkm
 ```
 
 
