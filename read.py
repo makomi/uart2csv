@@ -43,7 +43,7 @@ folder_output = "csv"
 serial_baud_rate    = 115200
 serial_timeout_read = 2            # number of seconds after which we consider the serial read operation to have failed
 serial_timeout_msg  = "--READ-TIMEOUT--"
-serial_cmd          = "print_id"   # command sent to request the device ID
+serial_cmd          = "\n"         # characters sent to request the device ID
 
 # -----------------------------------------------------------------------------
 # global variables
