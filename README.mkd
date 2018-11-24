@@ -19,32 +19,31 @@ Tested to work on Windows and Linux.
 3. Save device ID, timestamp, and operator's initials to a CSV file.
 4. Print device ID via a label printer.
 
-### Details
-* **Label.** Put on the device so the installation technician can identify each device based on device ID.
-* **CSV files.** Serve as a production log. They are used to notify the operator if a device ID occurs more than once.
-* **UART.** Acts as a generic interface to any kind of bus in case the sensor does not provide its network address via UART:
 ```text
-                                                                 .-> display
-1-Wire sensor <-> Arduino <-> UART/USB adapter <-> Python script --> label printer
-                                                                 `-> CSV file
+                                                          .-> display
+device <-> Arduino <-> UART/USB adapter <-> Python script --> CSV file
+                                                          `-> label printer
 ```
 
+### Details
+* **UART.** Acts as a generic interface to any kind of bus in case the device does not provide its ID via UART:
+* **CSV file.** Serves as a production log. Used to notify the operator if a device ID occurs more than once.
+* **Label.** Put on the device so the installation technician can identify each device based on device ID.
 
-## Interaction with Arduino
-
+### Interaction with Arduino
 * Default serial port configuration: 115200 8N1 (`serial_baud_rate`)
 * Default read timeout: 2 seconds (`serial_timeout_read`)
-* Default for querying Arduino for device ID: `\n` (`serial_cmd`). This allows one to easily get the device ID from the sensor without having to type a command each time.
+* Default characters for requesting the device ID from the Arduino: `\n` (`serial_cmd`). Using merely `\n` allows one to easily get the device ID without having to type a command each time.
 * This script expects the first 16 characters of the Arduino's response to be the device ID. Everything that follows the first 16 characters is ignored.
 
 
 ## Milestones
 
-* [X] Straightforward user interaction
-* [X] Write CSV file
-* [X] Working serial communication
-* [ ] Print the device ID via a label printer
-* [ ] Take care of the `TODO` and `FIXME` code annotations
+* [X] Straightforward user interaction.
+* [X] Write CSV file.
+* [X] Working serial communication (Linux and Windows).
+* [ ] Print the device ID via a label printer.
+* [ ] Take care of the `TODO` and `FIXME` code annotations.
 
 
 ## Getting started
