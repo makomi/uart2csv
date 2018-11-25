@@ -31,7 +31,7 @@ device <-> bus bridge <-> UART/USB adapter <-> Python script --> CSV file
 * **Label.** Put on the device so the installation technician can identify each device based on device ID.
 
 ### Interaction with the bus bridge
-The bus bridge is used to access a bus other than what the UART/USB adapter supports. In case of 1-Wire the bus bridge would allow us to get a 1-Wire sensor's unique bus address. In many cases an Arduino can be used to get a working prototype.
+The bus bridge is used to access a bus other than what the UART/USB adapter supports. In case of the 1-Wire the bus bridge would allow us to get a 1-Wire sensor's unique bus address. In many cases an Arduino can be used to get a working prototype.
 * Default serial port configuration: 115200 8N1 (`serial_baud_rate`)
 * Default read timeout: 2 seconds (`serial_timeout_read`)
 * Default characters for requesting the device ID from the bus bridge: `\n` (`serial_cmd`). Using merely `\n` allows one to easily get the device ID without having to type a command each time.
