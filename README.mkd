@@ -27,7 +27,7 @@ device <-> bus bridge <-> UART/USB adapter <-> Python script --> CSV file
 
 ### Details
 * **UART.** Acts as a generic interface to any kind of bus in case the device does not provide its ID via UART.
-* **CSV file.** Serves as a production log. Used to notify the operator if a device ID occurs more than once.
+* **CSV file.** Serves as a production log.
 * **Label.** Put on the device so the installation technician can identify each device based on device ID.
 
 ### Interaction with the bus bridge
