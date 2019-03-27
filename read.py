@@ -32,6 +32,7 @@ import operator
 import serial
 import serial.tools.list_ports
 from datetime import datetime
+from Tkinter import Tk
 
 folder_output = "csv"
 #file_cfg      = "settings.cfg"
@@ -194,6 +195,16 @@ def get_device_id():
 def handle_device_id_duplicates():
     pass                                                                         # TODO: check if the device_id is a duplicate
 
+def copy_device_id_to_clipboard():                                               # TODO: test this
+    global device_id
+
+    r = Tk()
+    r.withdraw()
+    r.clipboard_clear()
+    r.clipboard_append(device_id)
+    r.update() # now it stays on the clipboard after the window is closed
+    r.destroy()
+
 def output_data():
     global file_csv
     # create a timestamp
@@ -241,5 +252,7 @@ if __name__ == '__main__':
         get_device_id()
 
         handle_device_id_duplicates()
+
+        copy_device_id_to_clipboard()
 
         output_data()
