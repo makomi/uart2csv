@@ -204,7 +204,7 @@ def output_data():
 
     # append the result to the CSV
     if serial_read_ok:
-        file_csv.write("%s, %s, %s\n" % (timestamp, device_id, operator_initials))
+        file_csv.write("%s,%s,%s\n" % (timestamp, device_id, operator_initials))
 
     # TODO: print the device_id on paper
     # Zebra S4M, v53.17.11Z
