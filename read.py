@@ -171,21 +171,6 @@ def get_device_id():
     uart.write(serial_cmd)
     line = uart.readline().decode('ascii')
 
-    # write all lines that start with '#' (comments) directly to the CSV file
-    # Example:
-    #   # 1-Wire Tester
-    #   # v0.2rc (2019-05-24) g48a3bd2c
-    #   # ssh://git@host/onewire.git [tester]
-    while (len(line) != 0 and line[0] == '#'):
-        # display the comment
-        print("%s" % (line[:-1]))
-
-        # append the comment to the CSV
-        file_csv.write("%s\n" % (line[:-2]))
-
-        uart.write(serial_cmd)
-        line = uart.readline().decode('ascii')
-
     # extract the device_id (expected: "<16 character device ID>\n")
     device_id = line[0:length_device_id]
 
